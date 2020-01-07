@@ -3,13 +3,13 @@
 class ShoppingCart
 {
 
-    protected $items = [];
+    public $items = [];
 
-    protected $deliveryFee = 50;
+    public $deliveryFee = 50;
 
-    protected $netTotal;
+    public $netTotal;
 
-    protected $grossTotal;
+    public $grossTotal;
 
     public function addItem($name, $quantity, $value)
     {
@@ -46,15 +46,32 @@ class ShoppingCart
 
     public function calculateDeliveryFee()
     {
-        return $this->deliveryFee =  count($this->items) * $this->deliveryFee;
+        $this->deliveryFee =  count($this->items) * $this->deliveryFee;
     }
 
-    public function checkout($amount)
+    public function checkout($paid_amount)
     {
-        if ($amount < $this->grossTotal) {
+        if ($paid_amount < $this->grossTotal) {
             return  "insufficient funds";
         } else {
-            return $this->grossTotal - $amount;
+            $this->items = [];
+            return $paid_amount -  $this->grossTotal;
+        }
+    }
+}
+
+class CouponShoppingCart extends ShoppingCart
+{
+    const SUPERMART_DEV = 30;
+
+    public function checkout($paid_amount)
+    {
+        $amountToBePaid = $this->grossTotal - self::SUPERMART_DEV;
+        if ($paid_amount < $amountToBePaid) {
+            return  "insufficient funds";
+        } else {
+            $this->items = [];
+            return $paid_amount - $amountToBePaid;
         }
     }
 }
