@@ -3,13 +3,13 @@
 class ShoppingCart
 {
 
-    public $items = [];
+    protected $items = [];
 
-    public $deliveryFee = 50;
+    protected $deliveryFee = 50;
 
-    public $netTotal;
+    protected $netTotal;
 
-    public $grossTotal;
+    protected $grossTotal;
 
     public function addItem($name, $quantity, $value)
     {
@@ -58,4 +58,3 @@ class ShoppingCart
         }
     }
 }
-
