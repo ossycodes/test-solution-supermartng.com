@@ -2,7 +2,7 @@
 
 class CouponShoppingCart extends ShoppingCart
 {
-    const SUPERMART_DEV = 30;
+    const SUPERMART_DEV = 1000;
 
     public function checkout($paid_amount)
     {
@@ -15,21 +15,3 @@ class CouponShoppingCart extends ShoppingCart
         }
     }
 }
-
-$a = new CouponShoppingCart();
-
-$a->addItem("a", 2, 5);
-$a->addItem("b", 2, 15);
-$a->addItem("c", 2, 10);
-print_r($a->calculateNetTotal());
-print_r("net total" . $a->netTotal);
-echo "<br><br>";
-print_r($a->calculateDeliveryFee());
-echo "<br><br>";
-print_r("Total Deliveryfee" . $a->deliveryFee);
-echo "<br><br>";
-print_r("GrossTotal" . $a->grossTotal);
-print_r($a->calculateGrossTotal());
-print_r($a->grossTotal);
-echo "<br><br>";
-print_r($a->checkout(180));
