@@ -5,7 +5,7 @@ class ShoppingCart
     //collection of cart item
     public $items = [];
 
-    // value of delivery fee, 50 per day
+    // value of delivery fee, 50 Naira per cart item
     public $deliveryFee = 50;
 
     //total amount of item in the cart
@@ -55,9 +55,11 @@ class ShoppingCart
     // returns calculated delivery fee based on items
     public function calculateDeliveryFee()
     {
-        $this->deliveryFee =  count($this->items) * $this->deliveryFee;
+        return $this->deliveryFee =  count($this->items) * $this->deliveryFee;
     }
 
+
+    //checkout
     public function checkout($paid_amount)
     {
         if ($paid_amount < $this->grossTotal) {
